@@ -6,8 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Project/Scenes/BootstrapScene.unity
+    guid: 366c132ecaad04084bba1b56d79cf7ae
   m_configObjects:
+    com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: abe8fd53d3ef94f03bc9ea45c48fab78, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a69682d49439142d6b6e71cf7f40cc35, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: d8e413f55fa8048ac99552875e0bf87d, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: a325b47ba7a0d445ebfa07b37a5ac1ee, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: d309da659a6a74e579f2c6058dc68983, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
