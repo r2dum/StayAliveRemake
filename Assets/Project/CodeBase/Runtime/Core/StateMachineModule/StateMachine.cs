@@ -8,7 +8,7 @@ namespace CodeBase.Runtime.Core.StateMachineModule
         private readonly Dictionary<Type, IExitState> _registeredStates = new();
         private IExitState _currentState;
 
-        public void RegisterState<TState>(TState state) where TState : IExitState =>
+        protected void RegisterState<TState>(TState state) where TState : IExitState =>
             _registeredStates.Add(typeof(TState), state);
 
         public void Enter<TState>() where TState : class, IState

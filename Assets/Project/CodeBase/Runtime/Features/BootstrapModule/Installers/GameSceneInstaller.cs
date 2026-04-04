@@ -1,23 +1,24 @@
-using CodeBase.Runtime.Features.PlayerModule;
-using UnityEngine;
+using CodeBase.Runtime.Core.StateMachineModule;
+using CodeBase.Runtime.Features.BiomeModule;
+using CodeBase.Runtime.Features.CharacterModule;
+using CodeBase.Runtime.Features.GameFlowStateMachineModule;
+using CodeBase.Runtime.Features.ProjectileSpawnerFlowStateMachineModule;
 using Zenject;
 
 namespace CodeBase.Runtime.Features.BootstrapModule.Installers
 {
     public class GameSceneInstaller : MonoInstaller
     {
-        [SerializeField] private Player _player;
-
         public override void InstallBindings()
         {
             Container
-                .Bind<Player>()
-                .FromInstance(_player)
+                .BindInterfacesAndSelfTo<StatesFactory>()
                 .AsSingle();
 
-            Container
-                .BindInterfacesAndSelfTo<PlayerInput>()
-                .AsSingle();
+            BiomeModuleInstaller.Install(Container);
+            CharacterInstaller.Install(Container);
+            GameFlowStateMachineInstaller.Install(Container);
+            ProjectileSpawnerFlowStateMachineInstaller.Install(Container);
         }
     }
 }

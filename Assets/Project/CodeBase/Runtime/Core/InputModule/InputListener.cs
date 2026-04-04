@@ -13,6 +13,8 @@ namespace CodeBase.Runtime.Core.InputModule
         private const float SwipeThreshold = 50f;
 
         private readonly InputActionAsset _inputActionAsset;
+
+        private InputActionMap _playerInputActionMap;
         private InputAction _primaryContactAction;
         private InputAction _primaryPositionAction;
         private Vector2 _startPosition;
@@ -25,8 +27,9 @@ namespace CodeBase.Runtime.Core.InputModule
         public void Initialize()
         {
             _inputActionAsset.Enable();
-            _primaryContactAction = _inputActionAsset.FindActionMap(PlayerActionMap).FindAction(PrimaryContactAction);
-            _primaryPositionAction = _inputActionAsset.FindActionMap(PlayerActionMap).FindAction(PrimaryPositionAction);
+            _playerInputActionMap = _inputActionAsset.FindActionMap(PlayerActionMap);
+            _primaryContactAction = _playerInputActionMap.FindAction(PrimaryContactAction);
+            _primaryPositionAction = _playerInputActionMap.FindAction(PrimaryPositionAction);
             _primaryContactAction.started += OnStartTouch;
             _primaryContactAction.canceled += OnEndTouch;
         }
@@ -37,6 +40,12 @@ namespace CodeBase.Runtime.Core.InputModule
             _primaryContactAction.canceled -= OnEndTouch;
             _inputActionAsset.Disable();
         }
+
+        public void EnablePlayerActionMap() =>
+            _playerInputActionMap.Enable();
+
+        public void DisablePlayerActionMap() =>
+            _playerInputActionMap.Disable();
 
         private void OnStartTouch(InputAction.CallbackContext context) =>
             _startPosition = _primaryPositionAction.ReadValue<Vector2>();

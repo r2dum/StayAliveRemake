@@ -4,8 +4,7 @@ namespace CodeBase.Shared
     {
         public class Scene
         {
-            public const string Lobby = "LobbyScene";
-            public const string Gameplay = "GameplayScene";
+            public const string Game = "GameScene";
         }
     }
 }

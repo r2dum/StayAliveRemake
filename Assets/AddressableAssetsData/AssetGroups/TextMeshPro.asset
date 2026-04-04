@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TextMeshPro
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: TextMeshPro
+  m_GUID: fa640b54478bf40bcb729a360c311a89
+  m_SerializeEntries:
+  - m_GUID: 3d238b14cf898466e8fb923e2170b93e
+    m_Address: Assets/Project/GameResources/TextMeshPro/Resources_moved
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ab70aee4d56447429c680537fbf93ed
+    m_Address: Assets/Project/GameResources/TextMeshPro/Fonts
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0603b6d5186471b96c778c3949c7ce2
+    m_Address: Assets/Project/GameResources/TextMeshPro/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9f693669af91aa45ad615fc681ed29f
+    m_Address: Assets/Project/GameResources/TextMeshPro/Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7dd054c51aefc42e3a7c544d079386e1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c8ff860aea8e34074aa0443067e263bc, type: 2}
+    - {fileID: 11400000, guid: 18aee02bddc8143b1a42c2c4c0ce166b, type: 2}

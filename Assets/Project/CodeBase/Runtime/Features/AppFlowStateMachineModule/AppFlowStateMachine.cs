@@ -14,8 +14,8 @@ namespace CodeBase.Runtime.Features.AppFlowStateMachineModule
         public void Initialize()
         {
             RegisterState(_statesFactory.Create<BootstrapAppFlowState>());
-            RegisterState(_statesFactory.Create<LobbyFlowState>());
-            RegisterState(_statesFactory.Create<GameplayFlowState>());
+            RegisterState(_statesFactory.Create<AppLoadProgressState>());
+            RegisterState(_statesFactory.Create<GameFlowState>());
         }
     }
 }

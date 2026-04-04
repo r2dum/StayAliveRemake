@@ -28,7 +28,7 @@ namespace CodeBase.Runtime.Features.AppFlowStateMachineModule.States
             if (Mouse.current.enabled == false)
                 InputSystem.EnableDevice(Mouse.current);
             await _assetProvider.InitializeAsync();
-            _appFlowStateMachine.Enter<LobbyFlowState>();
+            _appFlowStateMachine.Enter<AppLoadProgressState>();
         }
 
         public void Exit() =>
