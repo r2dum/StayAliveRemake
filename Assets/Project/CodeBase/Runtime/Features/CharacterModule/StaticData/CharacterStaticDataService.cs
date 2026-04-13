@@ -26,19 +26,19 @@ namespace CodeBase.Runtime.Features.CharacterModule.StaticData
             _logService = logService;
         }
 
-        public async UniTask InitializeAsync()
+        public async UniTask LoadAsync()
         {
-            await InitializeDatabaseAsync();
+            await LoadDatabaseAsync();
             await LoadSelectedCharacterAsync();
         }
 
         public CharacterConfig ForCharacterConfig() =>
             _characterConfig;
 
-        private async UniTask InitializeDatabaseAsync()
+        private async UniTask LoadDatabaseAsync()
         {
             _characterDatabaseConfig =
-                await _assetProvider.Load<CharacterDatabaseConfig>(AssetAddress.CharacterDatabaseConfig);
+                await _assetProvider.Load<CharacterDatabaseConfig>(AssetAddress.Configs.CharacterDatabaseConfig);
 
             foreach (CharacterDefinition characterDefinition in _characterDatabaseConfig.CharacterDefinitions)
                 _characterDefinitions[characterDefinition.Id] = characterDefinition;

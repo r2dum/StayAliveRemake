@@ -4,7 +4,7 @@ namespace CodeBase.Runtime.Features.BiomeModule.StaticData
 {
     public interface IBiomeStaticDataService
     {
-        UniTask InitializeAsync();
+        UniTask LoadAsync();
         BiomeConfig ForBiomeConfig();
     }
 }

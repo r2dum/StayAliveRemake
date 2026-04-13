@@ -4,7 +4,7 @@ namespace CodeBase.Runtime.Features.CameraModule.StaticData
 {
     public interface ICameraStaticDataService
     {
-        UniTask InitializeAsync();
+        UniTask LoadAsync();
         CameraStaticData ForCameraStaticData(CameraStateType cameraStateType);
     }
 }

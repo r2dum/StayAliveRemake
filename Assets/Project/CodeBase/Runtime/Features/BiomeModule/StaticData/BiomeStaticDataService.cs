@@ -25,18 +25,19 @@ namespace CodeBase.Runtime.Features.BiomeModule.StaticData
             _logService = logService;
         }
 
-        public async UniTask InitializeAsync()
+        public async UniTask LoadAsync()
         {
-            await InitializeDatabaseAsync();
+            await LoadDatabaseAsync();
             await LoadSelectedBiomeAsync();
         }
 
         public BiomeConfig ForBiomeConfig() =>
             _biomeConfig;
 
-        private async UniTask InitializeDatabaseAsync()
+        private async UniTask LoadDatabaseAsync()
         {
-            _biomeDatabaseConfig = await _assetProvider.Load<BiomeDatabaseConfig>(AssetAddress.BiomeDatabaseConfig);
+            _biomeDatabaseConfig =
+                await _assetProvider.Load<BiomeDatabaseConfig>(AssetAddress.Configs.BiomeDatabaseConfig);
             foreach (BiomeDefinition biomeDefinition in _biomeDatabaseConfig.BiomeDefinitions)
                 _biomeDefinitions[biomeDefinition.Id] = biomeDefinition;
         }

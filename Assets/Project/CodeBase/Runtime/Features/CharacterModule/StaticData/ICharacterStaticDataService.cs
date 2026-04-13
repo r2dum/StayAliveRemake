@@ -4,7 +4,7 @@ namespace CodeBase.Runtime.Features.CharacterModule.StaticData
 {
     public interface ICharacterStaticDataService
     {
-        UniTask InitializeAsync();
+        UniTask LoadAsync();
         CharacterConfig ForCharacterConfig();
     }
 }

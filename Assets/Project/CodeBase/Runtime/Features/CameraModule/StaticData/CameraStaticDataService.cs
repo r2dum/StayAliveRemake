@@ -14,8 +14,8 @@ namespace CodeBase.Runtime.Features.CameraModule.StaticData
         public CameraStaticDataService(IAssetProvider assetProvider) =>
             _assetProvider = assetProvider;
 
-        public async UniTask InitializeAsync() =>
-            _cameraConfig = await _assetProvider.Load<CameraConfig>(AssetAddress.CameraConfig);
+        public async UniTask LoadAsync() =>
+            _cameraConfig = await _assetProvider.Load<CameraConfig>(AssetAddress.Configs.CameraConfig);
 
         public CameraStaticData ForCameraStaticData(CameraStateType cameraStateType) =>
             _cameraConfig.CameraStaticsData.FirstOrDefault(c => cameraStateType == c.StateType);

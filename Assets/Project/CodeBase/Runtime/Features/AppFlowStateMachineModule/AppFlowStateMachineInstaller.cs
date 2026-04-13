@@ -1,4 +1,3 @@
-using CodeBase.Runtime.Core.StateMachineModule;
 using Zenject;
 
 namespace CodeBase.Runtime.Features.AppFlowStateMachineModule
@@ -7,10 +6,6 @@ namespace CodeBase.Runtime.Features.AppFlowStateMachineModule
     {
         public override void InstallBindings()
         {
-            Container
-                .BindInterfacesAndSelfTo<StatesFactory>()
-                .AsSingle();
-
             Container
                 .BindInterfacesAndSelfTo<AppFlowStateMachine>()
                 .AsSingle();
