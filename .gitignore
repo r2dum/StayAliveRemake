@@ -82,6 +82,10 @@ crashlytics-build.properties
 # TestRunner generated files
 InitTestScene*.unity*
 
+# Third-party assets
+Assets/Plugins/Sirenix/
+Assets/Plugins/Sirenix.meta
+
 # Addressables default ignores, before user customizations
 /ServerData
 /[Aa]ssets/StreamingAssets/aa*

@@ -1,5 +1,4 @@
 using CodeBase.Runtime.Core.DebugModule.Log;
-using CodeBase.Runtime.Core.InputModule;
 using CodeBase.Runtime.Core.StateMachineModule;
 using CodeBase.Runtime.Features.CameraModule;
 using CodeBase.Runtime.Features.LobbyModule.UI;
@@ -11,15 +10,12 @@ namespace CodeBase.Runtime.Features.GameFlowStateMachineModule.States
     public class LobbyFlowState : IState
     {
         private readonly ICameraService _cameraService;
-        private readonly IInputListener _inputListener;
         private readonly IUIService _uiService;
         private readonly ILogService _logService;
 
-        public LobbyFlowState(ICameraService cameraService, IInputListener inputListener,
-            IUIService uiService, ILogService logService)
+        public LobbyFlowState(ICameraService cameraService, IUIService uiService, ILogService logService)
         {
             _cameraService = cameraService;
-            _inputListener = inputListener;
             _uiService = uiService;
             _logService = logService;
         }
@@ -27,7 +23,6 @@ namespace CodeBase.Runtime.Features.GameFlowStateMachineModule.States
         public async void Enter()
         {
             _logService.Write("Enter " + nameof(LobbyFlowState));
-            _inputListener.DisablePlayerActionMap();
             await _cameraService.SwitchState(CameraStateType.Lobby);
             await _uiService.OpenWindow<LobbyWindowPresenter>(AssetAddress.UI.LobbyWindow);
         }

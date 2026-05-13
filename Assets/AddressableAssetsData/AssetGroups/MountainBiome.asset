@@ -15,13 +15,33 @@ MonoBehaviour:
   m_GroupName: MountainBiome
   m_GUID: 3e535b5eeb0ba45e5b36f6fb2757e9f7
   m_SerializeEntries:
+  - m_GUID: 08c721287f8ec4b02bb90b72f29a940d
+    m_Address: ProjectileStone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 157a8f4b927e84fcb85999e47eb1aaf5
+    m_Address: ProjectileDynamiteConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4a236fef43f3d43db84f30bc8f3b9174
     m_Address: MountainBiome
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 653112167c37546589ccee9fdf1e073a
+    m_Address: ProjectileStoneConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bec4c051c6fb34e28bd45348728f177a
     m_Address: MountainBiomeConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe8e983bb8a694d5f813d8ed6cc270ee
+    m_Address: ProjectileDynamite
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

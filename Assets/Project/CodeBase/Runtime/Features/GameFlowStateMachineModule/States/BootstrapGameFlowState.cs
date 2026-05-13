@@ -1,4 +1,5 @@
 using CodeBase.Runtime.Core.DebugModule.Log;
+using CodeBase.Runtime.Core.InputModule;
 using CodeBase.Runtime.Core.StateMachineModule;
 using CodeBase.Runtime.Features.BiomeModule;
 using CodeBase.Runtime.Features.CharacterModule;
@@ -9,22 +10,24 @@ namespace CodeBase.Runtime.Features.GameFlowStateMachineModule.States
 {
     public class BootstrapGameFlowState : IState
     {
-        private readonly IGameSceneStaticDataService _gameSceneStaticDataService;
+        private readonly IGameSceneStaticDataLoader _gameSceneStaticDataLoader;
         private readonly GameFlowStateMachine _gameFlowStateMachine;
         private readonly ICharacterProvider _characterProvider;
         private readonly IBiomeProvider _biomeProvider;
+        private readonly IInputListener _inputListener;
         private readonly IUIFactory _uiFactory;
         private readonly ILogService _logService;
 
-        public BootstrapGameFlowState(IGameSceneStaticDataService gameSceneStaticDataService,
+        public BootstrapGameFlowState(IGameSceneStaticDataLoader gameSceneStaticDataLoader,
             GameFlowStateMachine gameFlowStateMachine, ICharacterProvider characterProvider,
-            IBiomeProvider biomeProvider, IUIFactory uiFactory,
-            ILogService logService)
+            IBiomeProvider biomeProvider, IInputListener inputListener,
+            IUIFactory uiFactory, ILogService logService)
         {
-            _gameSceneStaticDataService = gameSceneStaticDataService;
+            _gameSceneStaticDataLoader = gameSceneStaticDataLoader;
             _gameFlowStateMachine = gameFlowStateMachine;
             _characterProvider = characterProvider;
             _biomeProvider = biomeProvider;
+            _inputListener = inputListener;
             _uiFactory = uiFactory;
             _logService = logService;
         }
@@ -32,10 +35,11 @@ namespace CodeBase.Runtime.Features.GameFlowStateMachineModule.States
         public async void Enter()
         {
             _logService.Write("Enter " + nameof(BootstrapGameFlowState));
-            await _gameSceneStaticDataService.LoadAsync();
-            await _uiFactory.CreateUIRoot();
-            await _biomeProvider.CreateBiome();
+            _inputListener.DisablePlayerActionMap();
+            await _gameSceneStaticDataLoader.LoadAsync();
+            _biomeProvider.CreateBiome();
             await _characterProvider.CreateCharacter(_biomeProvider.BiomeView.CharacterSpawnPoint.position);
+            await _uiFactory.CreateUIRoot();
             _gameFlowStateMachine.Enter<LobbyFlowState>();
         }
 

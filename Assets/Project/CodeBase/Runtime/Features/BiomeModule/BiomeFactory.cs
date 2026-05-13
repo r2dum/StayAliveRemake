@@ -1,30 +1,34 @@
-using CodeBase.Runtime.Core.AssetManagementModule;
 using CodeBase.Runtime.Features.BiomeModule.StaticData;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
+using CodeBase.Runtime.Features.BiomePlatformModule;
+using CodeBase.Runtime.Features.ProjectileSpawnPointModule;
 using Zenject;
 
 namespace CodeBase.Runtime.Features.BiomeModule
 {
     public class BiomeFactory : IBiomeFactory
     {
+        private readonly IProjectileSpawnPointRegistry _projectileSpawnPointRegistry;
         private readonly IBiomeStaticDataService _biomeStaticDataService;
-        private readonly IAssetProvider _assetProvider;
+        private readonly IBiomePlatformRegistry _biomePlatformRegistry;
         private readonly IInstantiator _instantiator;
 
-        public BiomeFactory(IBiomeStaticDataService biomeStaticDataService, IAssetProvider assetProvider,
+        public BiomeFactory(IProjectileSpawnPointRegistry projectileSpawnPointRegistry,
+            IBiomeStaticDataService biomeStaticDataService, IBiomePlatformRegistry biomePlatformRegistry,
             IInstantiator instantiator)
         {
+            _projectileSpawnPointRegistry = projectileSpawnPointRegistry;
             _biomeStaticDataService = biomeStaticDataService;
-            _assetProvider = assetProvider;
+            _biomePlatformRegistry = biomePlatformRegistry;
             _instantiator = instantiator;
         }
 
-        public async UniTask<BiomeView> CreateBiome()
+        public BiomeView CreateBiome()
         {
             BiomeConfig biomeConfig = _biomeStaticDataService.ForBiomeConfig();
-            GameObject prefab = await _assetProvider.Load<GameObject>(biomeConfig.BiomeReference);
-            return _instantiator.InstantiatePrefabForComponent<BiomeView>(prefab);
+            BiomeView biomeView = _instantiator.InstantiatePrefabForComponent<BiomeView>(biomeConfig.Prefab);
+            _projectileSpawnPointRegistry.RegisterSpawnPoints(biomeConfig.ProjectileSpawnPoints);
+            _biomePlatformRegistry.RegisterPlatforms(biomeView.Platforms);
+            return biomeView;
         }
     }
 }

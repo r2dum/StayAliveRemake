@@ -25,9 +25,7 @@ namespace CodeBase.Runtime.Core.StateMachineModule
 
         private TState ChangeState<TState>() where TState : class, IExitState
         {
-            if (_currentState != null)
-                _currentState.Exit();
-
+            _currentState?.Exit();
             TState state = GetState<TState>();
             _currentState = state;
             return state;

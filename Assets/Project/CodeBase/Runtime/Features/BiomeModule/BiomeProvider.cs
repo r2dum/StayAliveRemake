@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-
 namespace CodeBase.Runtime.Features.BiomeModule
 {
     public class BiomeProvider : IBiomeProvider
@@ -11,7 +9,7 @@ namespace CodeBase.Runtime.Features.BiomeModule
         public BiomeProvider(IBiomeFactory biomeFactory) =>
             _biomeFactory = biomeFactory;
 
-        public async UniTask CreateBiome() =>
-            BiomeView = await _biomeFactory.CreateBiome();
+        public void CreateBiome() =>
+            BiomeView = _biomeFactory.CreateBiome();
     }
 }

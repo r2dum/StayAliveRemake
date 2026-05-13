@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Runtime.Features.ProjectileModule
@@ -5,28 +6,23 @@ namespace CodeBase.Runtime.Features.ProjectileModule
     public class ArcProjectile : ProjectileBase
     {
         [SerializeField] private float _arcHeight = 2f;
-        private Vector3 _startPosition;
-        private float _progress;
 
-        public override void Initialize(Vector3 target, float speed)
+        protected override async UniTask MoveAsync(Vector3 from, Vector3 to, float duration)
         {
-            base.Initialize(target, speed);
-            _startPosition = transform.position;
-        }
+            float elapsed = 0f;
 
-        protected override void Move()
-        {
-            _progress += Time.deltaTime * Speed;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float progress = elapsed / duration;
 
-            Vector3 currentPosition = Vector3.Lerp(_startPosition, TargetPosition, _progress);
+                Vector3 currentPosition = Vector3.Lerp(from, to, AnimationCurve.Evaluate(progress));
+                float yOffset = Mathf.Sin(progress * Mathf.PI) * _arcHeight;
+                currentPosition.y += yOffset;
+                transform.position = currentPosition;
 
-            float yOffset = Mathf.Sin(_progress * Mathf.PI) * _arcHeight;
-            currentPosition.y += yOffset;
-
-            transform.position = currentPosition;
-
-            if (_progress >= 1f)
-                OnHit();
+                await UniTask.Yield(PlayerLoopTiming.Update, destroyCancellationToken);
+            }
         }
     }
 }

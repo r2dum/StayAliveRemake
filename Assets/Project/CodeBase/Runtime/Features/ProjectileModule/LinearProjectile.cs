@@ -1,14 +1,23 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Runtime.Features.ProjectileModule
 {
     public class LinearProjectile : ProjectileBase
     {
-        protected override void Move()
+        protected override async UniTask MoveAsync(Vector3 from, Vector3 to, float duration)
         {
-            transform.position = Vector3.MoveTowards(transform.position, TargetPosition, Speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, TargetPosition) < 0.1f)
-                OnHit();
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float progress = elapsed / duration;
+                transform.position = Vector3.Lerp(from, to, AnimationCurve.Evaluate(progress));
+                await UniTask.Yield(PlayerLoopTiming.Update, destroyCancellationToken);
+            }
+
+            transform.position = to;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace CodeBase.Shared
         {
             public const string UIRoot = "UIRoot";
             public const string LobbyWindow = "LobbyWindow";
+            public const string GameplayWindow = "GameplayWindow";
             public const string SettingsPopUp = "SettingsPopUp";
         }
     }

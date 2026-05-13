@@ -1,32 +1,25 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Runtime.Features.ProjectileModule
 {
     public abstract class ProjectileBase : MonoBehaviour
     {
-        protected Vector3 TargetPosition;
-        protected float Speed;
-        protected bool IsInitialized;
+        protected AnimationCurve AnimationCurve;
 
-        public virtual void Initialize(Vector3 target, float speed)
+        public void SetAnimationCurve(AnimationCurve animationCurve) =>
+            AnimationCurve = animationCurve;
+
+        public async UniTask Launch(Vector3 from, Vector3 to, float duration)
         {
-            TargetPosition = target;
-            Speed = speed;
-            IsInitialized = true;
+            transform.position = from;
+            await MoveAsync(from, to, duration);
+            OnHit();
         }
 
-        private void Update()
-        {
-            if (IsInitialized)
-                Move();
-        }
+        protected abstract UniTask MoveAsync(Vector3 from, Vector3 to, float duration);
 
-        protected abstract void Move();
-
-        protected virtual void OnHit()
-        {
-            IsInitialized = false;
-            gameObject.SetActive(false);
-        }
+        protected virtual void OnHit() =>
+            Destroy(gameObject);
     }
 }

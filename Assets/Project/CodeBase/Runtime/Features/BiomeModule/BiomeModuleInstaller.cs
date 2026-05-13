@@ -1,4 +1,5 @@
 using CodeBase.Runtime.Features.BiomeModule.StaticData;
+using CodeBase.Runtime.Features.BiomePlatformModule;
 using Zenject;
 
 namespace CodeBase.Runtime.Features.BiomeModule
@@ -9,6 +10,10 @@ namespace CodeBase.Runtime.Features.BiomeModule
         {
             Container
                 .BindInterfacesAndSelfTo<BiomeStaticDataService>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesAndSelfTo<BiomePlatformRegistry>()
                 .AsSingle();
 
             Container

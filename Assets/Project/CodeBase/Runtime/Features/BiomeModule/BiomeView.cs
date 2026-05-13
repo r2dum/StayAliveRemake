@@ -1,18 +1,15 @@
 using System.Collections.Generic;
-using CodeBase.Runtime.Features.GridBlockModule;
-using CodeBase.Runtime.Features.ProjectileSpawnPointModule;
+using CodeBase.Runtime.Features.BiomePlatformModule;
 using UnityEngine;
 
 namespace CodeBase.Runtime.Features.BiomeModule
 {
     public class BiomeView : MonoBehaviour
     {
-        [SerializeField] private List<ProjectileSpawnPoint> _projectileSpawnPoints;
-        [SerializeField] private List<GridBlock> _gridBlocks;
+        [SerializeField] private List<BiomePlatform> _platforms;
         [SerializeField] private Transform _characterSpawnPoint;
 
-        public IReadOnlyList<ProjectileSpawnPoint> ProjectileSpawnPoints => _projectileSpawnPoints;
-        public IReadOnlyList<GridBlock> GridBlocks => _gridBlocks;
+        public IReadOnlyList<BiomePlatform> Platforms => _platforms;
         public Transform CharacterSpawnPoint => _characterSpawnPoint;
     }
 }

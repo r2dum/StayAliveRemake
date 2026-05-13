@@ -7,7 +7,7 @@ namespace CodeBase.Runtime.Features.StaticDataModule.GameScene
         public override void InstallBindings()
         {
             Container
-                .BindInterfacesAndSelfTo<GameSceneStaticDataService>()
+                .BindInterfacesAndSelfTo<GameSceneStaticDataLoader>()
                 .AsSingle();
         }
     }
